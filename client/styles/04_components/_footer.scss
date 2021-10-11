@@ -1,0 +1,10 @@
+.footer {
+
+  @include pos(absolute, auto);
+  text-align: center;
+  font-size: 0.8rem;
+  color: $col-accent-light;
+  background-color: $col-brand-primary;
+  text-transform: uppercase;
+  padding: 0 1rem;
+}

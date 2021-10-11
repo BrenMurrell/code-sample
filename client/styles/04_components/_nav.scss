@@ -1,0 +1,25 @@
+.nav {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-right: 1rem;
+
+  &__link {
+    color: $col-foreground;
+    padding: 0 1rem;
+    text-decoration: none;
+    line-height: 2.8rem;
+
+    &:hover {
+      color: lighten($col-foreground, 30%)
+    }
+
+    &--active {
+      color: $col-brand-primary;
+      
+      &:hover {
+        color: lighten($col-brand-primary, 20%)
+      }
+    }
+  }
+}

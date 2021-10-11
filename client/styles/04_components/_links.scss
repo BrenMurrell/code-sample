@@ -1,0 +1,10 @@
+
+
+a {
+  color: $col-brand-primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

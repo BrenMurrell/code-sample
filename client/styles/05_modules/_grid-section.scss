@@ -1,0 +1,17 @@
+.grid-section {
+  border-bottom: 1px solid $col-accent-light;
+  
+  &__header {
+    display: flex;
+    align-items: baseline;
+    padding: 1rem 0;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__link {
+    margin: 0 0 0 1rem;
+  }
+}

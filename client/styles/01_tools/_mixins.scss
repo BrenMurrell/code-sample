@@ -1,0 +1,27 @@
+@mixin box-shadow-soft {
+  box-shadow: 0 0 20px rgba(0,0,0,0.4)
+}
+
+$breakpoints: (
+  tablet: 600px,
+  laptop: 1240px,
+  desktop: 1400px
+);
+
+@mixin media-queries($breakpoint) { // @include media-queries('desktop')
+  // @if map-has-key($breakpoints, $breakpoint) {
+  // }
+  $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+  @media screen and (min-width: $breakpoint-value) {
+    @content;
+  }
+}
+
+@mixin pos($position: absolute, $top: 0, $right: 0, $bottom: 0 , $left: 0) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}

@@ -1,0 +1,96 @@
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+.album {}
+.albums {}
+.album__inner {}
+.album__link {}
+
+.album {
+  width: 100%;
+  margin-bottom: 2rem;
+
+  @include media-queries('tablet') {
+    width: 50%;
+  }
+  
+  @include media-queries('laptop') {
+    width: calc(100% / 3)
+  }
+  
+  @include media-queries('desktop') {
+    width: calc(100% / 4)
+  }
+  
+
+  &s {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -1rem;
+  } 
+
+  &__inner {
+    margin: 0 1rem;
+    width: calc(100% - 2rem)
+  }
+
+  &__link {
+    margin-bottom: 1rem;
+    display: block;
+    font-size: 0;
+    position: relative;
+    z-index: 0;
+    @include box-shadow-soft;
+
+    // .album__link:after {}
+    &:after {
+      @include pos();
+      content: '';
+      background-image: url("https://vinylbase.s3-ap-southeast-2.amazonaws.com/images/lp-image.png");
+      background-size: cover;
+      z-index: -1;
+      animation: rotation 2s infinite linear;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    width: 100%;
+    background-color: $col-brand-primary;
+    transform: perspective(1000px) translateZ(0px) translateX(0px) translateY(0px) rotateY(
+0deg);
+    transform-origin: left;
+    transition: all .4s ease-in-out;
+
+    .album__link:hover & {
+      transform: perspective(1000px) translateZ(0px) translateX(0px) translateY(0px) rotateY(
+-70deg);
+    box-shadow: 23px 1px 12px rgb(0 0 0 / 40%);
+    }
+  }
+
+  &__meta {
+    line-height: 1.4em;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &--primary {
+      color: $col-foreground;
+    }
+    
+    &--secondary {
+      font-weight: 400;
+      color: $col-accent;
+    }
+  }
+}
+
