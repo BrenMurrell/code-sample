@@ -48,4 +48,17 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+router.patch('/:id', (req, res) => {
+  const albumId = req.params.id
+  const newData = req.body
+
+  return db.updateAlbum(albumId, newData)
+    .then(updatedAlbum => {
+      return res.json(updatedAlbum)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
+
 module.exports = router

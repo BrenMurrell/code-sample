@@ -1,5 +1,8 @@
 import React from 'react'
 
+import Button from './Button'
+import ButtonGroup from './ButtonGroup'
+
 const Home = (props) => {
   return (
     <>
@@ -11,6 +14,10 @@ const Home = (props) => {
       <p>
         Today we&apos;re using it to explore SASS (syntactically awesome stylesheets) and the language we prefer to use, SCSS.
       </p>
+      <ButtonGroup>
+        <Button buttonFunc={() => props.history.push('/albums')} buttonText='View albums' />
+        <Button buttonFunc={() => props.history.push('/artists')} buttonText='View artists' />
+      </ButtonGroup>
     </>
   )
 }

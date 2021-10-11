@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
+import { deleteAlbumAction } from '../actions/albums'
+
+import ButtonGroup from './ButtonGroup'
+import Button from './Button'
 import LineBreakPara from './LineBreakPara'
+import Modal from './Modal'
 
 const Album = (props) => {
+  const [modalVisible, setModalVisible] = useState(false)
+  const { albums } = props
+
   const id = parseInt(props.match.params.id)
   const singleAlbum = props.albums.find(album => album.id === id)
+
+  const performDelete = (id) => {
+    props.dispatch(deleteAlbumAction(id))
+  }
+
   return (
     <>
       {singleAlbum && (
@@ -24,9 +38,26 @@ const Album = (props) => {
             <div className="single-album__block single-album__block--meta">
               <h4>Notes</h4>
               <LineBreakPara text={singleAlbum.notes} />
+              <ButtonGroup>
+                <Button buttonText='Update' buttonFunc={() => props.history.push(`/albums/${singleAlbum.id}/edit`)} />
+                <Button buttonType='warn' buttonFunc={() => setModalVisible(true)} buttonText='Delete' />
+              </ButtonGroup>
             </div>
           </article>
         </>
+      )}
+      {(!singleAlbum && albums.length) && (
+        <Redirect to='/albums' />
+      )}
+      { (modalVisible && singleAlbum) && (
+        <Modal title="Are you sure?">
+          <p>Are you really sure you want to delete {singleAlbum.name}?</p>
+          <p>There is <strong><em>no</em></strong> undo</p>
+          <ButtonGroup>
+            <Button buttonFunc={() => setModalVisible(false)} buttonText='Cancel' />
+            <Button buttonFunc={() => performDelete(singleAlbum.id)} buttonText='Delete' buttonType='warn' />
+          </ButtonGroup>
+        </Modal>
       )}
     </>
   )

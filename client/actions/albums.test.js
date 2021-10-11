@@ -1,4 +1,4 @@
-import { setAlbums, addAlbum } from './albums'
+import { setAlbums, addAlbum, deleteAlbum, updateAlbum } from './albums'
 
 const singleAlbum = {
   name: 'Single test album',
@@ -30,6 +30,15 @@ describe('Album action creator tests', () => {
     // { type: 'ADD_ALBUM', album: singleAlbum }
   })
 
-  test.todo('updateAlbum action creator works')
-  test.todo('deleteAlbum action creator works')
+  test('updateAlbum action creator works', () => {
+    const action = updateAlbum(singleAlbum)
+    expect(action.type).toEqual('UPDATE_ALBUM')
+    expect(action.album).toEqual(singleAlbum)
+  })
+
+  test('deleteAlbum action creator works', () => {
+    const action = deleteAlbum(3)
+    expect(action.type).toEqual('DELETE_ALBUM')
+    expect(action.albumId).toEqual(3)
+  })
 })

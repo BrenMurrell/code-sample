@@ -1,4 +1,4 @@
-import { getAllAlbumsAPI } from '../api/albums'
+import { getAllAlbumsAPI, deleteAlbumAPI } from '../api/albums'
 
 export const ADD_ALBUM = 'ADD_ALBUM'
 export const SET_ALBUMS = 'SET_ALBUMS'
@@ -26,10 +26,10 @@ export const updateAlbum = (album) => {
   }
 }
 
-export const deleteAlbum = (id) => {
+export const deleteAlbum = (albumId) => {
   return {
     type: DELETE_ALBUM,
-    id
+    albumId
   }
 }
 
@@ -38,6 +38,15 @@ export const getAllAlbumsAction = () => {
     return getAllAlbumsAPI()
       .then(albums => {
         return dispatch(setAlbums(albums))
+      })
+  }
+}
+
+export const deleteAlbumAction = (id) => {
+  return dispatch => {
+    return deleteAlbumAPI(id)
+      .then(() => {
+        return dispatch(deleteAlbum(id))
       })
   }
 }

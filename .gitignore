@@ -1,2 +1,3 @@
 server/**/*.css
 server/**/*.css.map
+node_modules

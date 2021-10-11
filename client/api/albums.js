@@ -16,8 +16,16 @@ export const getAlbumByIdAPI = (id) => {
     })
 }
 
-export const deleteAlbum = (albumId) => {
+export const deleteAlbumAPI = (albumId) => {
   return request.delete(`${rootUrl}/${albumId}`)
+    .then(res => {
+      return res.body
+    })
+}
+
+export const updateAlbumAPI = (album) => {
+  return request.patch(`${rootUrl}/${album.id}`)
+    .send(album)
     .then(res => {
       return res.body
     })

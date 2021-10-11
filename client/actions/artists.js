@@ -2,6 +2,7 @@ import { getAllArtistsAPI } from '../api/artists'
 
 export const SET_ARTISTS = 'SET_ARTISTS'
 export const ADD_ARTIST = 'ADD_ARTIST'
+export const UPDATE_ARTIST = 'UPDATE_ARTIST'
 export const DELETE_ARTIST = 'DELETE_ARTIST'
 
 const setArtists = (artists) => {
