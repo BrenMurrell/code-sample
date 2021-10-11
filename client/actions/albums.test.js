@@ -20,14 +20,12 @@ describe('Album action creator tests', () => {
     const action = setAlbums(multipleAlbums)
     expect(action.type).toEqual('SET_ALBUMS')
     expect(action.albums).toHaveLength(3)
-    // { type: 'SET_ALBUMS', albums: multipleAlbums }
   })
 
   test('addAlbum action creator works', () => {
     const action = addAlbum(singleAlbum)
     expect(action.type).toEqual('ADD_ALBUM')
     expect(action.album.artist).toEqual('8')
-    // { type: 'ADD_ALBUM', album: singleAlbum }
   })
 
   test('updateAlbum action creator works', () => {
