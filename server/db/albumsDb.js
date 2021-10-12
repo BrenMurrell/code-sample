@@ -30,6 +30,9 @@ const updateAlbum = (albumId, newData, db = connection) => {
   return db('albums')
     .update(newData)
     .where('id', albumId)
+    .then(() => {
+      return getAlbumById(albumId)
+    })
 }
 
 const addAlbum = (newAlbum, db = connection) => {

@@ -8,6 +8,7 @@ This code sample shows my skills in:
 - Front End
   - React
   - Redux
+  - Styling using SCSS
 - Unit Testing using Jest
 
 ## Install the sample
@@ -22,3 +23,10 @@ npm run knex seed:run
 ```sh
 npm run dev
 ```
+
+## todo
+- Database tests
+- Route tests
+- Component tests
+- View single artist
+- Add and update of albums & artists

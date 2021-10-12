@@ -23,9 +23,10 @@ export const deleteAlbumAPI = (albumId) => {
     })
 }
 
-export const updateAlbumAPI = (album) => {
-  return request.patch(`${rootUrl}/${album.id}`)
-    .send(album)
+export const updateAlbumAPI = (id, updatedAlbum) => {
+  return request.patch(`${rootUrl}/${id}`)
+    .type('form')
+    .send(updatedAlbum)
     .then(res => {
       return res.body
     })

@@ -1,21 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Button = ({ buttonFunc, buttonText, buttonType }) => {
+const Button = ({ buttonFunc, buttonText, buttonStyle }) => {
   return (
-    <button className={`btn btn--${buttonType}`} onClick={ buttonFunc }>{buttonText}</button>
+    <button className={`btn btn--${buttonStyle}`} onClick={ buttonFunc }>{buttonText}</button>
   )
 }
 
 Button.propTypes = {
   buttonText: PropTypes.string,
-  buttonType: PropTypes.string,
+  buttonStyle: PropTypes.string,
   buttonFunc: PropTypes.func
 }
 
 Button.defaultProps = {
   buttonText: 'Click me',
-  buttonType: 'primary',
+  buttonStyle: 'primary',
   buttonFunc: () => { console.log('No function assigned') }
 }
 

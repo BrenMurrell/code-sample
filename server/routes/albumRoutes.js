@@ -51,6 +51,7 @@ router.delete('/:id', (req, res) => {
 router.patch('/:id', (req, res) => {
   const albumId = req.params.id
   const newData = req.body
+  delete newData.artistName
 
   return db.updateAlbum(albumId, newData)
     .then(updatedAlbum => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 import AlbumTile from './AlbumTile'
 
@@ -13,7 +13,7 @@ const Artists = ({ artists }) => {
           <div className="grid-section" key={artist.id}>
             <div className="grid-section__header">
               <h2 className="grid-section__title">{artist.name}</h2>
-              <p className="grid-section__link"><Link to={`/artists/${artist.id}`}>See artist</Link></p>
+              {/* <p className="grid-section__link"><Link to={`/artists/${artist.id}`}>See artist</Link></p> */}
             </div>
             {artist.albums.length
               ? (

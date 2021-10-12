@@ -40,7 +40,7 @@ const Album = (props) => {
               <LineBreakPara text={singleAlbum.notes} />
               <ButtonGroup>
                 <Button buttonText='Update' buttonFunc={() => props.history.push(`/albums/${singleAlbum.id}/edit`)} />
-                <Button buttonType='warn' buttonFunc={() => setModalVisible(true)} buttonText='Delete' />
+                <Button buttonStyle='warn' buttonFunc={() => setModalVisible(true)} buttonText='Delete' />
               </ButtonGroup>
             </div>
           </article>
@@ -55,7 +55,7 @@ const Album = (props) => {
           <p>There is <strong><em>no</em></strong> undo</p>
           <ButtonGroup>
             <Button buttonFunc={() => setModalVisible(false)} buttonText='Cancel' />
-            <Button buttonFunc={() => performDelete(singleAlbum.id)} buttonText='Delete' buttonType='warn' />
+            <Button buttonFunc={() => performDelete(singleAlbum.id)} buttonText='Delete' buttonStyle='warn' />
           </ButtonGroup>
         </Modal>
       )}

@@ -10,6 +10,14 @@
     width: calc((100% - 10px));
     margin-bottom: 2rem;
 
+    @include media-queries('tablet') {
+      width: calc(100% / 2 - 10px)
+    }
+    
+    @include media-queries('laptop') {
+      width: calc(100% / 3 - 10px)
+    }
+
     > iframe {
       height: 100%;
       width: 100%;
@@ -22,17 +30,14 @@
     &--meta {
       padding: 0 1rem;
       background-color: lighten($col-brand-primary, 40%);
+      @include media-queries('tablet') {
+        width: calc(100%)
+      }
+      
+      @include media-queries('laptop') {
+        width: calc(100% / 3 - 10px)
+      }
     }
-
-    
-    @include media-queries('tablet') {
-      width: calc(100% / 2 - 10px)
-    }
-    
-    @include media-queries('laptop') {
-      width: calc(100% / 3 - 10px)
-    }
-
   }
 
   &__image {

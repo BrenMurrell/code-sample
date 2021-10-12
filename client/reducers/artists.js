@@ -1,4 +1,4 @@
-import { SET_ARTISTS, ADD_ARTIST, RESET_ARTISTS, DELETE_ARTIST } from '../actions/artists'
+import { SET_ARTISTS, ADD_ARTIST, DELETE_ARTIST } from '../actions/artists'
 
 const initialState = []
 
@@ -10,8 +10,6 @@ const reducer = (state = initialState, action) => {
       return [action.artist, ...state]
     case DELETE_ARTIST:
       return state.filter(artist => artist.id !== action.artistId)
-    case RESET_ARTISTS:
-      return initialState
     default:
       return state
   }
