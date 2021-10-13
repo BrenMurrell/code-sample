@@ -54,8 +54,11 @@ router.patch('/:id', (req, res) => {
   delete newData.artistName
 
   return db.updateAlbum(albumId, newData)
-    .then(updatedAlbum => {
-      return res.json(updatedAlbum)
+    .then(() => {
+      return db.getAlbumById(albumId)
+        .then(updatedAlbum => {
+          return res.json(updatedAlbum)
+        })
     })
     .catch(err => {
       console.log(err)

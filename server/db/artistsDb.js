@@ -26,12 +26,16 @@ function getArtistById (id, db = connection) {
     .where('artists.id', id)
     .first()
     .then(artist => {
-      return db('albums')
-        .where('albums.artist', artist.id)
-        .then(albums => {
-          artist.albums = albums
-          return artist
-        })
+      if (artist) {
+        return db('albums')
+          .where('albums.artist', artist.id)
+          .then(albums => {
+            artist.albums = albums
+            return artist
+          })
+      } else {
+        return artist
+      }
     })
 }
 
@@ -49,9 +53,6 @@ function deleteArtist (id, db = connection) {
   return db('artists')
     .del()
     .where('id', id)
-    .then(ids => {
-      return ids
-    })
 }
 
 module.exports = {
