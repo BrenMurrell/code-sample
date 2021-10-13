@@ -18,8 +18,10 @@ router.post('/', (req, res) => {
   const album = req.body
   return db.addAlbum(album)
     .then(ids => {
-      res.json(ids[0])
-      return null
+      return db.getAlbumById(ids[0])
+        .then(newAlbum => {
+          return res.json(newAlbum)
+        })
     })
     .catch(err => {
       console.log(err.message)

@@ -65,7 +65,7 @@ describe('Album database tests', () => {
 
     const expected = 'Updated album'
 
-    const albumId = 1
+    const albumId = 3
 
     return db.updateAlbum(albumId, newData, testDb)
       .then(() => {

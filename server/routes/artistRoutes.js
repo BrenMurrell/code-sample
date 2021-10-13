@@ -1,3 +1,4 @@
+/* eslint-disable promise/no-nesting */
 const express = require('express')
 const router = express.Router()
 
@@ -53,10 +54,25 @@ router.post('/', (req, res) => {
   const artist = req.body
   return db.addArtist(artist)
     .then(ids => {
-      return res.json(ids[0])
+      return db.getArtistById(ids[0])
+        .then(newArtist => {
+          return res.json(newArtist)
+        })
     })
     .catch(err => {
       console.log(err.message)
+    })
+})
+
+router.patch('/:id', (req, res) => {
+  const id = req.params.id
+  const artistData = req.body
+  return db.updateArtist(id, artistData)
+    .then(() => {
+      return db.getArtistById(id)
+        .then(updatedArtist => {
+          return res.json(updatedArtist)
+        })
     })
 })
 
