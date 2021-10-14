@@ -3,3 +3,5 @@ server/**/*.css.map
 
 node_modules
 server/db/dev.sqlite3
+
+coverage/
