@@ -5,3 +5,5 @@ node_modules
 server/db/dev.sqlite3
 
 coverage/
+server/public/bundle.js
+server/public/bundle.js.map
