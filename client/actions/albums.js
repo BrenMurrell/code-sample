@@ -33,7 +33,7 @@ export const deleteAlbum = (albumId) => {
   }
 }
 
-export const getAllAlbumsAction = () => {
+export const getAllAlbumsThunk = () => {
   return dispatch => {
     return getAllAlbumsAPI()
       .then(albums => {
@@ -42,7 +42,7 @@ export const getAllAlbumsAction = () => {
   }
 }
 
-export const deleteAlbumAction = (id) => {
+export const deleteAlbumThunk = (id) => {
   return dispatch => {
     return deleteAlbumAPI(id)
       .then(() => {
@@ -51,7 +51,7 @@ export const deleteAlbumAction = (id) => {
   }
 }
 
-export const updateAlbumAction = (album) => {
+export const updateAlbumThunk = (album) => {
   return dispatch => {
     return updateAlbumAPI(album.id, album)
       .then(updatedAlbum => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { updateAlbumAction } from '../actions/albums'
+import { updateAlbumThunk } from '../actions/albums'
 
 import ButtonGroup from './ButtonGroup'
 import Button from './Button'
@@ -22,7 +22,7 @@ const AlbumEdit = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(updateAlbumAction(formData))
+    dispatch(updateAlbumThunk(formData))
     setModalVisible(true)
   }
 

@@ -18,9 +18,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setAlbums": () => (/* binding */ setAlbums),
 /* harmony export */   "updateAlbum": () => (/* binding */ updateAlbum),
 /* harmony export */   "deleteAlbum": () => (/* binding */ deleteAlbum),
-/* harmony export */   "getAllAlbumsAction": () => (/* binding */ getAllAlbumsAction),
-/* harmony export */   "deleteAlbumAction": () => (/* binding */ deleteAlbumAction),
-/* harmony export */   "updateAlbumAction": () => (/* binding */ updateAlbumAction)
+/* harmony export */   "getAllAlbumsThunk": () => (/* binding */ getAllAlbumsThunk),
+/* harmony export */   "deleteAlbumThunk": () => (/* binding */ deleteAlbumThunk),
+/* harmony export */   "updateAlbumThunk": () => (/* binding */ updateAlbumThunk)
 /* harmony export */ });
 /* harmony import */ var _api_albums__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api/albums */ "./client/api/albums.js");
 
@@ -52,21 +52,21 @@ var deleteAlbum = function deleteAlbum(albumId) {
     albumId: albumId
   };
 };
-var getAllAlbumsAction = function getAllAlbumsAction() {
+var getAllAlbumsThunk = function getAllAlbumsThunk() {
   return function (dispatch) {
     return (0,_api_albums__WEBPACK_IMPORTED_MODULE_0__.getAllAlbumsAPI)().then(function (albums) {
       return dispatch(setAlbums(albums));
     });
   };
 };
-var deleteAlbumAction = function deleteAlbumAction(id) {
+var deleteAlbumThunk = function deleteAlbumThunk(id) {
   return function (dispatch) {
     return (0,_api_albums__WEBPACK_IMPORTED_MODULE_0__.deleteAlbumAPI)(id).then(function () {
       return dispatch(deleteAlbum(id));
     });
   };
 };
-var updateAlbumAction = function updateAlbumAction(album) {
+var updateAlbumThunk = function updateAlbumThunk(album) {
   return function (dispatch) {
     return (0,_api_albums__WEBPACK_IMPORTED_MODULE_0__.updateAlbumAPI)(album.id, album).then(function (updatedAlbum) {
       return dispatch(updateAlbum(updatedAlbum));
@@ -91,7 +91,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "DELETE_ARTIST": () => (/* binding */ DELETE_ARTIST),
 /* harmony export */   "updateArtist": () => (/* binding */ updateArtist),
 /* harmony export */   "deleteArtist": () => (/* binding */ deleteArtist),
-/* harmony export */   "getArtistsAll": () => (/* binding */ getArtistsAll)
+/* harmony export */   "getArtistsAllThunk": () => (/* binding */ getArtistsAllThunk)
 /* harmony export */ });
 /* harmony import */ var _api_artists__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api/artists */ "./client/api/artists.js");
 
@@ -119,7 +119,7 @@ var deleteArtist = function deleteArtist(id) {
     id: id
   };
 };
-var getArtistsAll = function getArtistsAll() {
+var getArtistsAllThunk = function getArtistsAllThunk() {
   return function (dispatch) {
     return (0,_api_artists__WEBPACK_IMPORTED_MODULE_0__.getAllArtistsAPI)().then(function (artists) {
       return dispatch(setArtists(artists));
@@ -252,7 +252,7 @@ var Album = function Album(props) {
   });
 
   var performDelete = function performDelete(id) {
-    props.dispatch((0,_actions_albums__WEBPACK_IMPORTED_MODULE_2__.deleteAlbumAction)(id));
+    props.dispatch((0,_actions_albums__WEBPACK_IMPORTED_MODULE_2__.deleteAlbumThunk)(id));
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, singleAlbum && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
@@ -387,7 +387,7 @@ var AlbumEdit = function AlbumEdit(props) {
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
-    dispatch((0,_actions_albums__WEBPACK_IMPORTED_MODULE_2__.updateAlbumAction)(formData));
+    dispatch((0,_actions_albums__WEBPACK_IMPORTED_MODULE_2__.updateAlbumThunk)(formData));
     setModalVisible(true);
   };
 
@@ -578,8 +578,8 @@ __webpack_require__.r(__webpack_exports__);
 var App = function App(_ref) {
   var dispatch = _ref.dispatch;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch((0,_actions_albums__WEBPACK_IMPORTED_MODULE_2__.getAllAlbumsAction)());
-    dispatch((0,_actions_artists__WEBPACK_IMPORTED_MODULE_3__.getArtistsAll)());
+    dispatch((0,_actions_albums__WEBPACK_IMPORTED_MODULE_2__.getAllAlbumsThunk)());
+    dispatch((0,_actions_artists__WEBPACK_IMPORTED_MODULE_3__.getArtistsAllThunk)());
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", {
     className: "app"

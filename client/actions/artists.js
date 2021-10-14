@@ -26,7 +26,7 @@ export const deleteArtist = (id) => {
   }
 }
 
-export const getArtistsAll = () => {
+export const getArtistsAllThunk = () => {
   return dispatch => {
     return getAllArtistsAPI()
       .then(artists => {

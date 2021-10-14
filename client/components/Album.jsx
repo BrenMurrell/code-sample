@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import { deleteAlbumAction } from '../actions/albums'
+import { deleteAlbumThunk } from '../actions/albums'
 
 import ButtonGroup from './ButtonGroup'
 import Button from './Button'
@@ -17,7 +17,7 @@ const Album = (props) => {
   const singleAlbum = props.albums.find(album => album.id === id)
 
   const performDelete = (id) => {
-    props.dispatch(deleteAlbumAction(id))
+    props.dispatch(deleteAlbumThunk(id))
   }
 
   return (

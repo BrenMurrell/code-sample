@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
 
-import { getAllAlbumsAction } from '../actions/albums'
-import { getArtistsAll } from '../actions/artists'
+import { getAllAlbumsThunk } from '../actions/albums'
+import { getArtistsAllThunk } from '../actions/artists'
 
 import Albums from './Albums'
 import Album from './Album'
@@ -15,8 +15,8 @@ import Footer from './Footer'
 
 const App = ({ dispatch }) => {
   useEffect(() => {
-    dispatch(getAllAlbumsAction())
-    dispatch(getArtistsAll())
+    dispatch(getAllAlbumsThunk())
+    dispatch(getArtistsAllThunk())
   })
 
   return (
