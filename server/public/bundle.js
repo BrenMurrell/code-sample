@@ -89,9 +89,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ADD_ARTIST": () => (/* binding */ ADD_ARTIST),
 /* harmony export */   "UPDATE_ARTIST": () => (/* binding */ UPDATE_ARTIST),
 /* harmony export */   "DELETE_ARTIST": () => (/* binding */ DELETE_ARTIST),
+/* harmony export */   "addArtist": () => (/* binding */ addArtist),
+/* harmony export */   "setArtists": () => (/* binding */ setArtists),
 /* harmony export */   "updateArtist": () => (/* binding */ updateArtist),
 /* harmony export */   "deleteArtist": () => (/* binding */ deleteArtist),
-/* harmony export */   "getArtistsAllThunk": () => (/* binding */ getArtistsAllThunk)
+/* harmony export */   "addArtistThunk": () => (/* binding */ addArtistThunk),
+/* harmony export */   "getArtistsAllThunk": () => (/* binding */ getArtistsAllThunk),
+/* harmony export */   "updateArtistThunk": () => (/* binding */ updateArtistThunk),
+/* harmony export */   "deleteArtistThunk": () => (/* binding */ deleteArtistThunk)
 /* harmony export */ });
 /* harmony import */ var _api_artists__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api/artists */ "./client/api/artists.js");
 
@@ -99,14 +104,18 @@ var SET_ARTISTS = 'SET_ARTISTS';
 var ADD_ARTIST = 'ADD_ARTIST';
 var UPDATE_ARTIST = 'UPDATE_ARTIST';
 var DELETE_ARTIST = 'DELETE_ARTIST';
-
+var addArtist = function addArtist(artist) {
+  return {
+    type: ADD_ARTIST,
+    artist: artist
+  };
+};
 var setArtists = function setArtists(artists) {
   return {
     type: SET_ARTISTS,
     artists: artists
   };
 };
-
 var updateArtist = function updateArtist(artist) {
   return {
     type: UPDATE_ARTIST,
@@ -119,10 +128,31 @@ var deleteArtist = function deleteArtist(id) {
     id: id
   };
 };
+var addArtistThunk = function addArtistThunk(artistData) {
+  return function (dispatch) {
+    return (0,_api_artists__WEBPACK_IMPORTED_MODULE_0__.addArtistAPI)(artistData).then(function (newArtist) {
+      return dispatch(addArtist(newArtist));
+    });
+  };
+};
 var getArtistsAllThunk = function getArtistsAllThunk() {
   return function (dispatch) {
     return (0,_api_artists__WEBPACK_IMPORTED_MODULE_0__.getAllArtistsAPI)().then(function (artists) {
       return dispatch(setArtists(artists));
+    });
+  };
+};
+var updateArtistThunk = function updateArtistThunk(id, artistData) {
+  return function (dispatch) {
+    return (0,_api_artists__WEBPACK_IMPORTED_MODULE_0__.updateArtistAPI)(artistData).then(function (updatedArtist) {
+      return dispatch(updateArtist(updatedArtist));
+    });
+  };
+};
+var deleteArtistThunk = function deleteArtistThunk(id) {
+  return function (dispatch) {
+    return (0,_api_artists__WEBPACK_IMPORTED_MODULE_0__.deleteArtistAPI)(id).then(function () {
+      return dispatch(deleteArtist(id));
     });
   };
 };
@@ -179,13 +209,21 @@ var updateAlbumAPI = function updateAlbumAPI(id, updatedAlbum) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "addArtistAPI": () => (/* binding */ addArtistAPI),
 /* harmony export */   "getAllArtistsAPI": () => (/* binding */ getAllArtistsAPI),
-/* harmony export */   "getArtistByIdAPI": () => (/* binding */ getArtistByIdAPI)
+/* harmony export */   "getArtistByIdAPI": () => (/* binding */ getArtistByIdAPI),
+/* harmony export */   "updateArtistAPI": () => (/* binding */ updateArtistAPI),
+/* harmony export */   "deleteArtistAPI": () => (/* binding */ deleteArtistAPI)
 /* harmony export */ });
 /* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! superagent */ "./node_modules/superagent/lib/client.js");
 /* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(superagent__WEBPACK_IMPORTED_MODULE_0__);
 
 var rootUrl = '/api/v1/artists';
+var addArtistAPI = function addArtistAPI(artistData) {
+  return superagent__WEBPACK_IMPORTED_MODULE_0___default().post(rootUrl).send(artistData).then(function (res) {
+    return res.body;
+  });
+};
 var getAllArtistsAPI = function getAllArtistsAPI() {
   return superagent__WEBPACK_IMPORTED_MODULE_0___default().get(rootUrl).then(function (res) {
     return res.body;
@@ -193,6 +231,16 @@ var getAllArtistsAPI = function getAllArtistsAPI() {
 };
 var getArtistByIdAPI = function getArtistByIdAPI(id) {
   return superagent__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(rootUrl, "/").concat(id)).then(function (res) {
+    return res.body;
+  });
+};
+var updateArtistAPI = function updateArtistAPI(id, artistData) {
+  return superagent__WEBPACK_IMPORTED_MODULE_0___default().patch("".concat(rootUrl, "/").concat(id)).send(artistData).then(function (res) {
+    return res.body;
+  });
+};
+var deleteArtistAPI = function deleteArtistAPI(id) {
+  return superagent__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(rootUrl, "/").concat(id)).then(function (res) {
     return res.body;
   });
 };
@@ -1092,6 +1140,11 @@ var reducer = function reducer() {
 
     case _actions_artists__WEBPACK_IMPORTED_MODULE_0__.ADD_ARTIST:
       return [action.artist].concat(_toConsumableArray(state));
+
+    case _actions_artists__WEBPACK_IMPORTED_MODULE_0__.UPDATE_ARTIST:
+      return state.map(function (artist) {
+        return artist.id === action.artist.id ? action.artist : artist;
+      });
 
     case _actions_artists__WEBPACK_IMPORTED_MODULE_0__.DELETE_ARTIST:
       return state.filter(function (artist) {
